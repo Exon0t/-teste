@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>A Line Simulator</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>A Line Simulator</h1>
+    <p>Where RTD's A Line trains (Union Station ⇄ Denver Airport) should be according to the timetable.
+      Positions are estimated from scheduled stop times, not live tracking.</p>
+  </header>
+
+  <main>
+    <section class="controls" aria-label="Playback">
+      <button id="play" type="button" aria-label="Play">▶</button>
+      <output id="clock">--:--</output>
+      <label>Speed
+        <select id="speed">
+          <option value="1">Real time</option>
+          <option value="10">10×</option>
+          <option value="60" selected>1 min / s</option>
+          <option value="300">5 min / s</option>
+        </select>
+      </label>
+      <button id="now" type="button">Now</button>
+      <input id="time" type="range" step="1" aria-label="Time of day">
+    </section>
+
+    <section id="schedules" class="schedules" aria-label="Schedules"></section>
+
+    <div id="map" role="region" aria-label="Map of the A Line"></div>
+
+    <section class="chart">
+      <h2>Time–distance chart</h2>
+      <p class="hint">Each line is one train: across is time, down is distance from Union Station. Steeper means faster;
+        flat steps are station stops. The vertical line is the current time.</p>
+      <svg id="marey" role="img" aria-label="Time-distance chart of scheduled trains"></svg>
+    </section>
+
+    <p id="missing" class="missing" hidden>No schedule data yet. Run <code>tools/build_data.py</code> to create
+      <code>data/schedules.js</code> (see README).</p>
+  </main>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+  <script src="data/schedules.js"></script>
+  <script src="sim.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
