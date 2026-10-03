@@ -17,6 +17,7 @@
     --border: #3a3a37;
     --grid: #2d2d2b;
     --accent: #6c9bff;
+    color-scheme: dark;
   }
 }
 
@@ -28,6 +29,7 @@
   --border: #3a3a37;
   --grid: #2d2d2b;
   --accent: #6c9bff;
+  color-scheme: dark;
 }
 
 * { box-sizing: border-box; }
@@ -93,6 +95,8 @@ header p, .hint { margin: 0 0 16px; color: var(--muted); }
 .schedule .meta { color: var(--muted); font-size: 0.85rem; }
 .schedule .meta, .schedule .stats { display: block; }
 .schedule .stats { font-variant-numeric: tabular-nums; }
+
+.leaflet-container { background: var(--surface); }
 
 #map {
   height: 460px;

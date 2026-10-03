@@ -25,10 +25,13 @@
 
   // ---- Map ----------------------------------------------------------------
   const map = L.map("map", { zoomControl: true });
-  L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-    maxZoom: 18,
-    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-  }).addTo(map);
+  // Pages that can't load map images (e.g. a sandboxed preview) set MAP_TILES = false.
+  if (window.MAP_TILES !== false) {
+    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+      maxZoom: 18,
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+    }).addTo(map);
+  }
 
   const bounds = L.latLngBounds([]);
   const drawnShapes = new Set();
